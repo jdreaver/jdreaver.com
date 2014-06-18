@@ -1,6 +1,8 @@
 body {
-    color: black;
+    color: #333;
     font-size: 16px;
+    font-family: Ubuntu, sans-serif;
+    font-weight: 300;
     margin: 0px auto 0px auto;
     width: 800px;
 }
@@ -43,6 +45,7 @@ div#footer {
 
 h1 {
     font-size: 24px;
+    font-weight: bold;
 }
 
 h2 {
