@@ -7,10 +7,10 @@ body {
     width: 800px;
 }
 
-div#header {
+header {
     border-bottom: 2px solid black;
-    margin-bottom: 30px;
-    padding: 12px 0px 12px 0px;
+    margin-bottom: 20px;
+    padding: 12px 0px 25px 0px;
 }
 
 div#logo a {
@@ -21,11 +21,13 @@ div#logo a {
     text-decoration: none;
 }
 
-div#header #navigation {
+nav {
     text-align: right;
+    //float: right;
+    margin-bottom: 20px;
 }
 
-div#header #navigation a {
+nav a {
     color: black;
     font-size: 18px;
     font-weight: bold;
