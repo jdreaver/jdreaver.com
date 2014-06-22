@@ -60,13 +60,18 @@ div.info {
     font-style: italic;
 }
 
+
+code {
+    font-size: 14px;
+}
+
 pre.sourceCode {
     background-color: #f8f8f8;
     border: 2px solid #ddd;
     padding: 6px 10px;
     border-radius: 5px;
     overflow-x: auto;
-    font-size: 14px;
+
 }
 
 
