@@ -2,4 +2,5 @@
 title: Contact
 ---
 
-johndreaver@gmail.com
+* Email: johndreaver@gmail.com
+*
