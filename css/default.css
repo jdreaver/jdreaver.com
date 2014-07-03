@@ -1,8 +1,8 @@
 body {
     color: #333;
-    font-size: 20px;
-    font-family: Ubuntu, sans-serif;
-    font-weight: 300;
+    font-size: 16px;
+    font-family: "Lato","proxima-nova","Helvetica Neue",Arial,sans-serif;
+    font-weight: normal;
     margin: 0px auto 0px auto;
     width: 864px;
     line-height: 130%;
@@ -47,12 +47,12 @@ div#footer {
 }
 
 h1 {
-    font-size: 32px;
+    font-size: 28px;
     font-weight: bold;
 }
 
 h2 {
-    font-size: 24px;
+    font-size: 20px;
 }
 
 div.info {
