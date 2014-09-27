@@ -6,6 +6,9 @@ In this post I am going to describe how I built a modified `QDoubleSpinBox`
 that can handle scientific notation. If you just want the code, check out this
 [gist](https://gist.github.com/jdreaver/0be2e44981159d0854f5).
 
+UPDATE: [Here is a fork](https://gist.github.com/Razoa/efb3da87ad0afb1e7f20)
+that works on Python 2 and PyQt. Thanks Thomas!
+
 ## Motivation
 
 The GUI I a creating at work requires a lot of individual float inputs. Before
