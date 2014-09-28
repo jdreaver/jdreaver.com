@@ -1,0 +1,6 @@
+---
+- name: Update apt cache
+  apt: update-cache=yes cache_valid_time=3600
+
+- name: Upgrade all safe packages
+  apt: upgrade=safe

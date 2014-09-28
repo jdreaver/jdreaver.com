@@ -1,0 +1,32 @@
+---
+
+# - name: Add GHC PPA
+#   apt_repository: repo=ppa:hvr/ghc
+#                   state=present
+#   register: ghc_ppa
+
+# - name: Update apt cache
+#   apt: update-cache=yes
+#   when: ghc_ppa.changed
+
+# - name: Install GHC and Cabal
+#   apt: name={{ item }} state=latest
+#   with_items:
+#     - ghc-7.8.3
+#     - cabal-install-1.20
+
+# - name: Symlink GHC to /usr/bin
+#   file: src=/opt/ghc/7.8.3/bin/{{ item }}
+#         dest=/usr/bin/{{ item }}
+#         state=link
+#   with_items:
+#     - ghc
+#     - ghc-pkg
+
+# - name: Symlink cabal to /usr/bin
+#   file: src=/usr/bin/cabal-1.20
+#         dest=/usr/bin/cabal
+#         state=link
+
+# - name: Update cabal
+#   command: cabal update

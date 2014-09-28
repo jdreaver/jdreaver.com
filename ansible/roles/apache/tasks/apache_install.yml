@@ -1,0 +1,21 @@
+---
+- name: Install Apache
+  apt: name=apache2 state=present
+  notify:
+    - restart apache
+
+- name: Remove default apache files
+  file: name="{{ apache.sites_enabled }}/{{ item }}"
+        state=absent
+  with_items:
+    - 000-default.conf
+    - defaults-ssl.conf
+
+- name: Set default fqdn.conf
+  template: src=fqdn.conf.j2
+            dest="{{ apache.conf_available }}/fqdn.conf"
+
+- name: Install fqdn.conf using symlink
+  file: src="{{ apache.conf_available }}/fqdn.conf"
+        dest="{{ apache.conf_enabled }}/fqdn.conf"
+        state=link

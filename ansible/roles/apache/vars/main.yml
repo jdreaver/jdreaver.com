@@ -1,0 +1,7 @@
+---
+apache:
+  install_location: /etc/apache2
+  sites_available: /etc/apache2/sites-available
+  sites_enabled: /etc/apache2/sites-enabled
+  conf_available: /etc/apache2/conf-available
+  conf_enabled: /etc/apache2/conf-enabled

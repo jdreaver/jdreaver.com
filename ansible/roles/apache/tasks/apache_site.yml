@@ -1,0 +1,14 @@
+---
+# This task must be called with the apache_sitename parameter set, and a file
+# named {{ apache_sitename }}.conf must be in the templates directory.
+
+- name: Install apache config into sites-available
+  template: src="{{ apache_sitename }}.conf.j2"
+            dest="{{ apache.sites_available }}/{{ apache_sitename }}.conf"
+  notify:
+    - restart apache
+
+- name: Link sites-available file to sites-enabled
+  file: src="{{ apache.sites_available }}/{{ apache_sitename }}.conf"
+        dest="{{ apache.sites_enabled }}/{{ apache_sitename }}.conf"
+        state=link
