@@ -1,4 +1,0 @@
----
-git_repo: https://github.com/jdreaver/jdreaver.com.git
-repo_location: /var/lib/jdreaver.com
-deploy_location: /var/www/html/jdreaver.com

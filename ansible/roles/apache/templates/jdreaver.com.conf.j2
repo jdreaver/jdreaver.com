@@ -1,8 +1,0 @@
-<VirtualHost *:80>
-    DocumentRoot {{ deploy_location }}
-    ServerName   {{ inventory_hostname }}
-
-    <Directory {{ deploy_location }}>
-        AllowOverride All
-    </Directory>
-</VirtualHost>

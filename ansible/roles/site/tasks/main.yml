@@ -1,5 +1,0 @@
----
-
-- include: apt.yml tags=apt
-- include: ufw.yml tags=ufw
-- include: site.yml tags=site

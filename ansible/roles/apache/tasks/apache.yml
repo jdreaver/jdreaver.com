@@ -1,7 +1,0 @@
----
-# Install apache, enable
-- include: apache_install.yml
-
-# Install an apache conf file for a site. This role needs to be called with the
-# apache site name.
-- include: apache_site.yml
