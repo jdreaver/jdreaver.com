@@ -1,6 +1,5 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
-import           Data.Monoid (mappend)
 import           Hakyll
 import qualified Data.Set as S
 import           Text.Pandoc.Options
@@ -17,28 +16,28 @@ main = do
 
     hakyll $ do
 
-    match "images/*" $ do
+      match "images/*" $ do
         route   idRoute
         compile copyFileCompiler
 
-    match "css/*" $ do
+      match "css/*" $ do
         route   idRoute
         compile compressCssCompiler
 
-    match (fromList ["about.rst", "contact.markdown"]) $ do
+      match (fromList ["about.rst", "contact.markdown"]) $ do
         route   $ setExtension "html"
         compile $ pandocMathCompiler
             >>= loadAndApplyTemplate "templates/default.html" defaultContext
             >>= relativizeUrls
 
-    match postsPattern $ do
+      match postsPattern $ do
         route $ setExtension "html"
         compile $ pandocMathCompiler
             >>= loadAndApplyTemplate "templates/post.html"    postCtx
             >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls
 
-    create ["archive.html"] $ do
+      create ["archive.html"] $ do
         route idRoute
         compile $ do
             posts <- recentFirst =<< loadAll postsPattern
@@ -53,7 +52,7 @@ main = do
                 >>= relativizeUrls
 
 
-    match "index.html" $ do
+      match "index.html" $ do
         route idRoute
         compile $ do
             posts <- recentFirst =<< loadAll postsPattern
@@ -67,7 +66,7 @@ main = do
                 >>= loadAndApplyTemplate "templates/default.html" indexCtx
                 >>= relativizeUrls
 
-    match "templates/*" $ compile templateCompiler
+      match "templates/*" $ compile templateCompiler
 
 
 --------------------------------------------------------------------------------
