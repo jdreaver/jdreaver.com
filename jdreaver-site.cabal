@@ -3,7 +3,6 @@ version:             1.0.0
 synopsis:            My blog
 homepage:            http://jdreaver.com
 license:             BSD3
-license-file:        LICENSE
 author:              John David Reaver
 maintainer:          johndreaver@gmail.com
 build-type:          Simple
