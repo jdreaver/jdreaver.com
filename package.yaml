@@ -1,0 +1,15 @@
+name: jdreaver-site
+
+dependencies:
+  - base
+  - containers
+  - hakyll
+  - pandoc
+
+ghc-options:
+  - -Wall
+  - -threaded
+
+executables:
+  jdreaver-site:
+    main: hakyll.hs
