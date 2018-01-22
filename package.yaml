@@ -2,7 +2,6 @@ name: jdreaver-site
 
 dependencies:
   - base
-  - containers
   - hakyll
   - pandoc
 
