@@ -1,7 +1,7 @@
 # Internal variables
 _POST_DATE  ?= $(shell date +%Y-%m-%d)
-_POST_TITLE ?= $(shell echo "$(TITLE)" | sed 's/'\''//g; s/ \+/_/g; s/.*/\L&/g')
-_POST_PATH  ?= posts/$(_POST_DATE)-$(_POST_TITLE).md
+_POST_TITLE ?= $(shell echo "$(TITLE)" | sed 's/'\''//g; s/ \+/-/g; s/.*/\L&/g')
+_POST_PATH  ?= drafts/$(_POST_DATE)-$(_POST_TITLE).md
 
 .PHONY: new
 new:
