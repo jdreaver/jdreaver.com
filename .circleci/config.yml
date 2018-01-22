@@ -1,0 +1,76 @@
+---
+
+version: 2
+
+jobs:
+
+  build:
+    docker:
+      - image: jdreaver/circleci-jdreaver.com
+    steps:
+      - checkout
+      - attach_workspace:
+          at: /tmp/workspace
+
+      - run:
+          name: Create file of md5sums for backend deps
+          command: |
+            stack --version > build-dependencies
+            md5sum stack.yaml package.yaml >> build-dependencies
+
+      - restore_cache:
+          keys:
+            - build-deps-v1-{{ checksum "build-dependencies" }}
+            - build-deps-v1-
+
+      - run:
+          name: Build Haskell dependencies
+          command: stack build --only-dependencies --fast --jobs=1
+          no_output_timeout: 30m
+
+      - save_cache:
+          key: build-deps-v1-{{ checksum "build-dependencies" }}
+          paths:
+            - ~/.stack
+
+      - run:
+          name: Build generator
+          command: stack build --fast
+
+      - run:
+          name: Run generator
+          command: stack exec jdreaver-site -- build
+
+      - run:
+          name: Move files to workspace
+          command: mv _site /tmp/workspace/_site
+
+      - persist_to_workspace:
+          root: /tmp/workspace
+          paths:
+            - _site
+
+  deploy:
+    docker:
+      - image: jdreaver/circleci-jdreaver.com
+    steps:
+      - attach_workspace:
+          at: /tmp/workspace
+
+      - run:
+          name: Deploy to S3
+          command: aws s3 sync --delete . s3://jdreaver.com
+          working_directory: /tmp/workspace/_site/
+
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - master
