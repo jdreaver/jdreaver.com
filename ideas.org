@@ -1,0 +1,33 @@
+- Why Haskell is awesome for event sourcing (types, pure functions, left folds,
+  separate IO and folds, etc)
+- Not using synchronous commands in event sourcing. Instead store commands
+  directly in the event stream and process them asynchronously (see [[Event
+  Sourcing Information]] for more details).
+  - Discuss why this is better. Get ability to subscribe to all streams simply
+    (just need to store offset for each shard). Can use off-the-shelf systems
+    that exist for replicated logs like Kafka, Kinesis, etc. Don't need to ever
+    query by logical stream individually just to do event processing for an
+    aggregate, so you don't need a special event store that supports this.
+  - This pattern is pretty much functionally equivalent to storing commands in
+    a queue instead of processing them instantly.
+  - We can still call these commands if you want (present tense, imperative
+    messages requesting something)! I'm mostly proposing a change in how they
+    are processed.
+- Evolution of an event store. Start with a single log, then having multiple
+  "logical logs" on a single physical log, then sharding the physical log, etc.
+  Use the info in [[Event Sourcing Information]]
+- Using postgres as an event store
+  - Discuss requirements, like monotonic reads (make sure this is the right
+    terminology)
+  - Can start with super simple version with just sequence_number and data blob
+    with appends (using full table lock if there are multiple writers)
+  - Can add logical streams with UUID
+  - Can add optimistic locks to logical stream
+  - Can add sharding using partitions based on UUID
+  - Can include the benchmark script I made
+  - Can use track_commit_timestamp for ordering, but beware using this for
+    really old events because postgres doesn't keep these timestamps forever.
+  - As a sidenote: you can add all kinds of auxiliary columns/tables you want
+    to store metadata. You can add timestamps for insertion times, columns for
+    the "type" of each logical stream, an extra table for metadata for each
+    stream, etc.
